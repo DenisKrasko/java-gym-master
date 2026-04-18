@@ -2,7 +2,7 @@ package ru.yandex.practicum.gym;
 
 import java.util.Objects;
 
-public class Coach {
+public class Coach implements Comparable<Coach>{
 
     //фамилия
     private String surname;
@@ -40,5 +40,18 @@ public class Coach {
 
     public String getMiddleName() {
         return middleName;
+    }
+
+    @Override
+    public int compareTo(Coach o) {
+        if (surname.equals(o.surname)) {
+            if (name.equals(o.name)) {
+                return String.CASE_INSENSITIVE_ORDER.compare(middleName, o.middleName);
+            } else {
+                return String.CASE_INSENSITIVE_ORDER.compare(name, o.name);
+            }
+        } else {
+            return String.CASE_INSENSITIVE_ORDER.compare(surname, o.surname);
+        }
     }
 }
